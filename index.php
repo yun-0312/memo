@@ -2,7 +2,7 @@
 //データベース接続
 require_once('../config.php');
 $dbh = connectDb();
-$sql = 'SELECT * FROM memos WHERE deleted_at IS NULL';
+$sql = 'SELECT * FROM memos WHERE deleted_at IS NULL ORDER BY created_at DESC';
 $stmt = $dbh->prepare($sql);
 $stmt->execute();
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -50,12 +50,14 @@ $dbh = null;
 <tr>
 <th>ID</th>
 <th>内容</th>
+<th>作成日時</th>
 <th>変更</th>
 </tr>
 <?php foreach ($result as $value) : ?>
 <tr>
 	<td><?php echo $value['id']; ?></td>
 	<td><?php echo $value['memo']; ?></td>
+	<td><?php echo $value ['created_at']; ?></td>
 	<td><a href="edit.php?id=<?php echo $value['id']; ?>">[編集]</a><a href="delete.php?id=<?php echo $value['id']; ?>">[削除]</a></td>
 </tr>
 <?php endforeach; ?>
