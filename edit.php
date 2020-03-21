@@ -39,7 +39,7 @@ $dbh = null;
 <title>メモ</title>
 </head>
 <body>
-<h1>編集</h1>
+<h1>編集画面</h1>
 <?php if ($page_flg === 0) : ?>
 	<form action="" method="post">
 	<p>メモ</p>
